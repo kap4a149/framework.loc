@@ -24,5 +24,16 @@ class View{
             echo 'View not found' . $this->path;
         }
     }
+
+    public static function errorCode($code){
+        http_response_code($code);
+        require 'application/views/errors/' . $code . '.php';
+        exit;
+    }
+
+    public function redirect($url){
+        header('location:' . $url);
+        exit();
+    }
 }
 ?>

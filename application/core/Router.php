@@ -2,6 +2,8 @@
 
 namespace application\core;
 
+use application\core\View;
+
 class Router{
 
     protected $routes = [];
@@ -40,15 +42,15 @@ class Router{
                 $controller->$action();
             }
             else{
-                echo 'Action не найден: ' . $action;
+                View::errorCode(404);
             }
             }
             else{
-                echo 'Class не найден: ' . $path;
+                View::errorCode(404);
             }
         }
         else{
-            echo 'Маршрут не найден';
+            View::errorCode(404);            
         }
     }
 
