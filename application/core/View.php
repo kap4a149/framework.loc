@@ -12,6 +12,7 @@ class View{
         $this->path = $route['controller'] . '/' . $route['action'];
     }
 
+    //this function require needed view
     public function render($title, $vars=[]){
         //this function enable bufering
         ob_start();
@@ -25,12 +26,14 @@ class View{
         }
     }
 
+    //error page function
     public static function errorCode($code){
         http_response_code($code);
         require 'application/views/errors/' . $code . '.php';
         exit;
     }
 
+    //redirect function
     public function redirect($url){
         header('location:' . $url);
         exit();
