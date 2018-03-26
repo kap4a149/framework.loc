@@ -5,6 +5,7 @@ class Db{
 
     protected $db;
 
+    //Request config file, and make connection to database
     public function __construct(){
         $config = require 'application/config/db.php';
         $this->db = new PDO("mysql:host=".$config['host'].";dbname=".$config['name'], $config['user'], $config['password']);
@@ -22,13 +23,13 @@ class Db{
         return $stmt;
     }
 
-    
+    //Returning row
     public function row($sql, $params=[]){
         $result = $this->query($sql, $params);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    //Return column
+    //Returning column
     public function column($sql, $params = []){
         $result = $this->query($sql, $params);
         return $result->fetchColumn();
